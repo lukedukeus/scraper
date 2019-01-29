@@ -4,11 +4,11 @@ import datetime as dt
 import re
 import os
 
-reddit = praw.Reddit(client_id='IFXhYoANBON5gg', 
-                     client_secret='EHTLxLBUEkJtJpG-Szri_A8Atpg', 
+reddit = praw.Reddit(client_id='14_CHARS_IDENTIFIER', 
+                     client_secret='27_CHARS_SECRET_ID', 
                      user_agent='SCRIPT_NAME', 
-                     username='lukedukeus', 
-                     password='1vanzweden')
+                     username='REDDIT_USER_NAME', 
+                     password='REDDIT_LOGIN_PASSWORD')
 
 
 subreddit = reddit.subreddit('MicrosoftRewards')
