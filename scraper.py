@@ -13,6 +13,7 @@ reddit = praw.Reddit(client_id='14_CHARS_IDENTIFIER',
 
 subreddit = reddit.subreddit('MicrosoftRewards')
 new = subreddit.new(limit=1000)
+bad_words = ['imgur', 'bitbucket', 'reddit']
 
 dict =        { "body":[]}
 f= open("temp.txt","w+")
@@ -20,7 +21,7 @@ for submission in new:
     with open("temp.txt", "a", encoding="utf-8") as f:
         f.write(submission.selftext)
 
-
+ 
 with open("temp.txt", "r", encoding="utf-8") as f:
         for line in f:
             urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', line)
@@ -32,12 +33,17 @@ with open("email_links.txt", "r", encoding="utf-8") as f:
         for line in f:                  
             line = line.replace("]","\n")
             line = line.replace(")","\n")
+            line = line.replace("[","\n")
             line = line.replace("(","\n")
-            p.write(line)
+            if line.startswith('http'):
+                p.write(line)
 with open("email_links.txt", "w", encoding="utf-8") as f:           
     with open('temp.txt','r', encoding="utf-8") as file:
-        for line in file:
-            if not line.isspace():
-                f.write(line)
+            for line in file:
+                if line.startswith('http'):
+                    if not any(bad_word in line for bad_word in bad_words):
+                        f.write(line)
+                
+                
 
-os.remove("temp.txt") 
+                
