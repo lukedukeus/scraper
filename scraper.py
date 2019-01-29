@@ -9,7 +9,7 @@ reddit = praw.Reddit(client_id='14_CHARS_IDENTIFIER',
                      user_agent='SCRIPT_NAME', 
                      username='REDDIT_USER_NAME', 
                      password='REDDIT_LOGIN_PASSWORD')
-
+#found at https://medium.com/@plog397/webscraping-reddit-python-reddit-api-wrapper-praw-tutorial-for-windows-a9106397d75e
 
 subreddit = reddit.subreddit('MicrosoftRewards')
 new = subreddit.new(limit=1000)
